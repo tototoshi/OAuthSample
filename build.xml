@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project name="OAuth" default="compile">
+
+  <property name="lib" value="lib" />
+  <property name="src" value="src" />
+  <property name="bin" value="bin" />
+  <property name="jentities" value="JEntities.jar" />
+  <property name="commons-codec" value="commons-codec-1.4.jar" />
+  <property name="commons-logging" value="commons-logging-1.1.1.jar" />
+  <property name="httpclient" value="httpclient-4.0.1.jar" />
+  <property name="httpmime" value="httpmime-4.0.1.jar" />
+  <property name="apache-mime4j" value="apache-mime4j-0.6.jar" />
+  <property name="commons-lang" value="commons-lang-2.4.jar" />
+  <property name="httpcore" value="httpcore-4.0.1.jar" />
+  <property name="httpentities" value="httpcore-4.0.1.jar" />
+  <property name="xerces2" value="xercesImpl.jar" />
+
+  <target name="all" depends="compile">
+  </target>
+
+  <target name="compile">
+    <mkdir dir="${bin}" />
+    <javac includeantruntime="true" 
+           srcdir="${src}"
+           destdir="${bin}"
+           debug="on">
+      <classpath>
+        <pathelement path="${lib}/${jentities}"/>
+        <pathelement path="${lib}/${httpclient}"/>
+        <pathelement path="${lib}/${commons-lang}"/>
+        <pathelement path="${lib}/${httpcore}"/>
+        <pathelement path="${lib}/${xerces2}"/>
+      </classpath>
+      <include name="**/*.java" />
+    </javac>
+  </target>
+  
+  <target name="request_token">
+    <java classname="com.toshi.twitter.oauth.RequestToken">
+      <classpath>
+        <pathelement path="${bin}"/>        
+        <pathelement path="${lib}/${jentities}"/>
+        <pathelement path="${lib}/${httpclient}"/>
+        <pathelement path="${lib}/${commons-logging}"/>
+        <pathelement path="${lib}/${commons-lang}"/>
+        <pathelement path="${lib}/${httpcore}"/>
+        <pathelement path="${lib}/${xerces2}"/>
+      </classpath>
+    </java>
+  </target>
+
+  <target name="access_token">
+    <java classname="com.toshi.twitter.oauth.AccessTokenGetter">
+      <classpath>
+        <pathelement path="${bin}"/>        
+        <pathelement path="${lib}/${jentities}"/>
+        <pathelement path="${lib}/${httpclient}"/>
+        <pathelement path="${lib}/${commons-logging}"/>
+        <pathelement path="${lib}/${commons-lang}"/>
+        <pathelement path="${lib}/${httpcore}"/>
+        <pathelement path="${lib}/${xerces2}"/>
+      </classpath>
+    </java>
+  </target>
+
+  <target name="test">
+    <java classname="com.toshi.twitter.oauth.TestPost">
+      <classpath>
+        <pathelement path="${bin}"/>        
+        <pathelement path="${lib}/${jentities}"/>
+        <pathelement path="${lib}/${httpclient}"/>
+        <pathelement path="${lib}/${commons-logging}"/>
+        <pathelement path="${lib}/${commons-lang}"/>
+        <pathelement path="${lib}/${httpcore}"/>
+        <pathelement path="${lib}/${xerces2}"/>
+      </classpath>
+    </java>
+  </target>
+
+
+</project>
