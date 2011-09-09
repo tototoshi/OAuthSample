@@ -1,4 +1,4 @@
-package com.toshi.twitter.oauth;
+package com.github.tototoshi.oauth.twitter;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -16,7 +16,7 @@ import org.apache.xerces.impl.dv.util.Base64;
 
 public class OAuthUtil {
     public static String getTimeStamp(){
-        return Long.toString(System.currentTimeMillis());
+        return Long.toString(System.currentTimeMillis() / 1000);
     }
 
     public static String getSignature(String signatureBaseString, String keyString){
